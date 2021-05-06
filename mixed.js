@@ -10,9 +10,29 @@ const quotes = [
 "Don’t try to steer the river. \nDeepak Chopra",
 "Obstacles don’t block the path, they are the path. \nZen proverb"
 ];
-let num = quotes.length - 1
-let quoteIndex = Math.floor(Math.random() * num);
+const meditation = [
+    "Meditate on the breath",
+    "Meditate on compassion",
+    "Mediate on loving kindness",
+    "Mediate on the impermanence of all things",
+    "If you are ready, choose a non-dualistic meditation pracetice of your own"
+];
+const medLength =[
+    2,
+    5, 
+    10,
+    15,
+    20,
+    25
+];
+
+let quoteNum = quotes.length - 1;
+let medNum = meditation.length -1;
+let lengthNum = medLength.length -1;
+let quoteIndex = Math.floor(Math.random() * quoteNum);
+let meditationIndex = Math.floor(Math.random() * medNum);
+let lengthIndex = Math.floor(Math.random() * lengthNum);
 const generateQuote = function(){
-    console.log(quotes[quoteIndex])
+    console.log(`Your Zen quote to consider is \n\n"${quotes[quoteIndex]}." \n${meditation[meditationIndex]} for a minimum of ${medLength[lengthIndex]} minutes.\nRemember to relax in all things.`)
 }
 generateQuote()
