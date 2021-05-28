@@ -1,25 +1,33 @@
 const button = document.querySelector("button");
+const getData = function () {
+  return axios.get("/meditation.json");
+};
 
-button.addEventListener("click", async function (e) {
+button.addEventListener("click", function (e) {
   e.preventDefault();
-  const res = await axios.get("/meditation.json");
-  let quoteNum = res.data.quotes.length - 1;
-  let medNum = res.data.meditation.length - 1;
-  let lengthNum = res.data.medLength.length - 1;
-  addQuote(res.data.quotes);
-  addMeditation(res.data.meditation);
-  addTime(res.data.medLength);
+  addQuote();
+  addMeditation();
+  addTime();
 });
 
-const addQuote = function (quote) {
+const addQuote = async function () {
   const quoteDiv = document.getElementById("quote");
-  quoteDiv.append(quote);
+  const res = await getData();
+  let quoteNum = res.data.quotes.length - 1;
+  let quoteIndex = Math.floor(Math.random() * quoteNum);
+  quoteDiv.append(res.data.quotes[quoteIndex]);
 };
-const addMeditation = function (meditation) {
+const addMeditation = async function () {
   const meditationDiv = document.getElementById("meditation");
-  meditationDiv.append(meditation);
+  const res = await getData();
+  let medNum = res.data.meditation.length - 1;
+  let meditationIndex = Math.floor(Math.random() * medNum);
+  meditationDiv.append(res.data.meditation[meditationIndex]);
 };
-const addTime = function (time) {
+const addTime = async function () {
   const timeDiv = document.getElementById("time");
-  timeDiv.append(time);
+  const res = await getData();
+  let lengthNum = res.data.medLength.length - 1;
+  let lengthIndex = Math.floor(Math.random() * lengthNum);
+  timeDiv.append(res.data.medLength[lengthIndex]);
 };
