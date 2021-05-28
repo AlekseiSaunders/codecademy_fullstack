@@ -3,6 +3,9 @@ const button = document.querySelector("button");
 button.addEventListener("click", async function (e) {
   e.preventDefault();
   const res = await axios.get("/meditation.json");
+  let quoteNum = res.data.quotes.length - 1;
+  let medNum = res.data.meditation.length - 1;
+  let lengthNum = res.data.medLength.length - 1;
   addQuote(res.data.quotes);
   addMeditation(res.data.meditation);
   addTime(res.data.medLength);
